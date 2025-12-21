@@ -1,10 +1,9 @@
 ![Supported Platforms](https://img.shields.io/badge/supported%20platforms-windows%20(soon%20linux,%20android,%20macos,%20ios)-blue)
 [![Repository Size](https://img.shields.io/github/repo-size/acc0untz0138/DenpaEx)](https://github.com/acc0untz0138/DenpaEx)
-![Commits](https://img.shields.io/github/commits-since/acc0untz0138/DenpaEx/latest)
 [![Issues](https://img.shields.io/github/issues/acc0untz0138/DenpaEx)](https://github.com/acc0untz0138/DenpaEx/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/acc0untz0138/DenpaEx)](https://github.com/acc0untz0138/DenpaEx/pulls)
 ![Download Count](https://img.shields.io/github/downloads/acc0untz0138/DenpaEx/total)
-[![Denpa Engine Discord](https://img.shields.io/discord/993277169876873326?label=discord)](https://discord.gg/BFaMfmTNaa)
+[![Denpa Engine Discord](https://img.shields.io/discord/993277169876873326?label=denpa%20engine%20discord)](https://discord.gg/BFaMfmTNaa)
 [![DenpaEx Discord](https://img.shields.io/discord/993277169876873326?label=denpaex%20discord)](https://discord.gg/9yzdrdDjdB)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=acc0untz0138/DenpaEx&type=Timeline)](https://star-history.com/#acc0untz0138/DenpaEx&Timeline)
