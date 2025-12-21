@@ -114,7 +114,6 @@
 	<haxelib name="flixel-studio" if="FLIXEL_STUDIO" />
 	<haxelib name="hxcpp-debug-server" if="debug" />
 	<haxelib name="flxanimate" />
-	<haxelib name="extension-androidtools" if="android" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
