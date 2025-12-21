@@ -35,10 +35,6 @@ HRK.EXEX - Co-Developer
 
 ## Denpa Engine Team
 
-![at](https://user-images.githubusercontent.com/101066547/221386616-ff55be43-b6d3-4315-96b0-0b6140afb873.png)
-
-BlueVapor1234 - Main Programmer & Creator
-
 ![toadette](https://user-images.githubusercontent.com/101066547/221386629-e6b8cd50-a59e-4a3a-a439-5f906806a1c7.png)
 
 Toadette8394 - Co Programmer
