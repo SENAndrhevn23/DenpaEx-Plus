@@ -46,74 +46,94 @@ typedef PreloadedChartNote = {
  * Basic class for all `Note`s.
  */
 class Note extends FlxSprite {
-	public static final gfxLetter:Array<String> = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+	public static final gfxLetter:Array<String> = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',];
 
-	public static final scales:Array<Float> = [0.9, 0.85, 0.8, 0.7, 0.66, 0.6, 0.55, 0.50, 0.46];
-	public static final lessX:Array<Int> = [0, 0, 0, 0, 0, 8, 7, 8, 8];
-	public static final separator:Array<Int> = [0, 0, 1, 1, 2, 2, 2, 3, 3];
-	public static final xtra:Array<Int> = [150, 89, 0, 0, 0, 0, 0, 0, 0];
-	public static final posRest:Array<Int> = [0, 0, 0, 0, 25, 32, 46, 52, 60];
+	public static final scales:Array<Float> = [0.9, 0.85, 0.8, 0.7, 0.66, 0.6, 0.55, 0.50, 0.46, 0.4, 0.35, 0.3];
+	public static final lessX:Array<Int> = [0, 0, 0, 0, 0, 8, 7, 8, 8, 7, 8, 8];
+	public static final separator:Array<Int> = [0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4];
+	public static final xtra:Array<Int> = [150, 89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	public static final posRest:Array<Int> = [0, 0, 0, 0, 25, 32, 46, 52, 60, 75, 82, 96];
 	public static final minMania:Int = 0;
-	public static final maxMania:Int = 8;
+	public static final maxMania:Int = 11;
 	public static final defaultMania:Int = 3;
 
-	// E = Space
-	// ABCD = Left Down Up Right
-	// FGHI = LDUR 2
+	// IJ = Space
+	// EFGH = Left Down Up Right
+	// KLMN = LDUR 2
+	// ABCD = Sharp LDUR 1
+	// OPQR = Sharp LDUR 2
 	public static final keysShit:Map<Int, Map<String, Dynamic>> = [
 		0 => [
-			"letters" => ["E"],
+			"letters" => ["I"],
 			"anims" => ["SPACE"],
 			"strumAnims" => ["SPACE"],
 			"pixelAnimIndex" => [4]
 		],
 		1 => [
-			"letters" => ["A", "D"],
+			"letters" => ["E", "H"],
 			"anims" => ["LEFT", "RIGHT"],
 			"strumAnims" => ["LEFT", "RIGHT"],
 			"pixelAnimIndex" => [0, 3]
 		],
 		2 => [
-			"letters" => ["A", "E", "D"],
+			"letters" => ["E", "I", "H"],
 			"anims" => ["LEFT", "SPACE", "RIGHT"],
 			"strumAnims" => ["LEFT", "SPACE", "RIGHT"],
 			"pixelAnimIndex" => [0, 4, 3]
 		],
 		3 => [
-			"letters" => ["A", "B", "C", "D"],
+			"letters" => ["E", "F", "G", "H"],
 			"anims" => ["LEFT", "DOWN", "UP", "RIGHT"],
 			"strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT"],
 			"pixelAnimIndex" => [0, 1, 2, 3]
 		],
 		4 => [
-			"letters" => ["A", "B", "E", "C", "D"],
+			"letters" => ["E", "F", "I", "G", "H"],
 			"anims" => ["LEFT", "DOWN", "SPACE", "UP", "RIGHT"],
 			"strumAnims" => ["LEFT", "DOWN", "SPACE", "UP", "RIGHT"],
 			"pixelAnimIndex" => [0, 1, 4, 2, 3]
 		],
 		5 => [
-			"letters" => ["A", "C", "D", "F", "B", "I"],
+			"letters" => ["E", "G", "H", "K", "F", "N"],
 			"anims" => ["LEFT", "UP", "RIGHT", "LEFT", "DOWN", "RIGHT"],
 			"strumAnims" => ["LEFT", "UP", "RIGHT", "LEFT", "DOWN", "RIGHT"],
 			"pixelAnimIndex" => [0, 2, 3, 5, 1, 8]
 		],
 		6 => [
-			"letters" => ["A", "C", "D", "E", "F", "B", "I"],
+			"letters" => ["E", "G", "H", "I", "K", "F", "N"],
 			"anims" => ["LEFT", "UP", "RIGHT", "SPACE", "LEFT", "DOWN", "RIGHT"],
 			"strumAnims" => ["LEFT", "UP", "RIGHT", "SPACE", "LEFT", "DOWN", "RIGHT"],
 			"pixelAnimIndex" => [0, 2, 3, 4, 5, 1, 8]
 		],
 		7 => [
-			"letters" => ["A", "B", "C", "D", "F", "G", "H", "I"],
+			"letters" => ["E", "F", "G", "H", "K", "L", "M", "N"],
 			"anims" => ["LEFT", "DOWN", "UP", "RIGHT", "LEFT", "DOWN", "UP", "RIGHT"],
 			"strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "LEFT", "DOWN", "UP", "RIGHT"],
 			"pixelAnimIndex" => [0, 1, 2, 3, 5, 6, 7, 8]
 		],
 		8 => [
-			"letters" => ["A", "B", "C", "D", "E", "F", "G", "H", "I"],
+			"letters" => ["E", "F", "G", "H", "I", "K", "L", "M", "N"],
 			"anims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
 			"strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
 			"pixelAnimIndex" => [0, 1, 2, 3, 4, 5, 6, 7, 8]
+		],
+		9 => [
+			"letters" => ["E", "F", "G", "H", "I", "J", "K", "L", "M", "N"],
+			"anims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
+			"strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
+			"pixelAnimIndex" => [0, 1, 2, 3, 4, 4, 5, 6, 7, 8]
+		],
+		10 => [
+			"letters" => ["E", "F", "G", "H", "I", "J", "I", "K", "L", "M", "N"],
+			"anims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "SPACE", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
+			"strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "SPACE", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
+			"pixelAnimIndex" => [0, 1, 2, 3, 4, 4, 4, 5, 6, 7, 8]
+		],
+		11 => [
+			"letters" => ["E", "F", "G", "H", "A", "B", "C", "D", "K", "L", "M", "N"],
+			"anims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "SPACE", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
+			"strumAnims" => ["LEFT", "DOWN", "UP", "RIGHT", "SPACE", "SPACE", "SPACE", "LEFT", "DOWN", "UP", "RIGHT"],
+			"pixelAnimIndex" => [0, 1, 2, 3, 0, 1, 7, 8, 5, 6, 7, 8]
 		],
 	];
 
