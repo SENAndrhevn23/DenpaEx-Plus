@@ -10,7 +10,7 @@
 
 # Friday Night Funkin': DenpaEx Plus
 
-What if DenpaEx had 26k support? (this is not fully done. i need some testers)
+What if DenpaEx had 26k support? (this is not fully done as i do not know how to code, only how to modify it)
 
 ## THANKS!
 
