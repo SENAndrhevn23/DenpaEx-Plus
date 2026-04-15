@@ -9,9 +9,11 @@ runs-on: windows-latest
 
 ```
 steps:
-  - uses: actions/checkout@v4
+  - name: Checkout
+    uses: actions/checkout@v4
 
-  - uses: krdlab/setup-haxe@v1
+  - name: Setup Haxe
+    uses: krdlab/setup-haxe@v1
     with:
       haxe-version: 4.3.6
 
@@ -25,10 +27,11 @@ steps:
       cd crshhndlr
       haxelib run lime build windows
 
-  - name: Compile (DenpaEx)
+  - name: Compile (Game)
     run: haxelib run lime build windows
 
-  - uses: actions/upload-artifact@v4
+  - name: Upload Artifact
+    uses: actions/upload-artifact@v4
     with:
       name: windowsBuild
       path: export/release/windows/bin/*
@@ -40,9 +43,11 @@ runs-on: ubuntu-22.04
 
 ```
 steps:
-  - uses: actions/checkout@v4
+  - name: Checkout
+    uses: actions/checkout@v4
 
-  - uses: krdlab/setup-haxe@v1
+  - name: Setup Haxe
+    uses: krdlab/setup-haxe@v1
     with:
       haxe-version: 4.3.6
 
@@ -62,7 +67,8 @@ steps:
   - name: Compile
     run: haxelib run lime build linux
 
-  - uses: actions/upload-artifact@v4
+  - name: Upload Artifact
+    uses: actions/upload-artifact@v4
     with:
       name: linuxBuild
       path: export/release/linux/bin/*
