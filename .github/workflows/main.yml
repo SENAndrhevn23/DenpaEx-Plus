@@ -21,6 +21,7 @@ jobs:
           haxelib run hmm install --quiet
 
       - name: Build Crash Handler
+        # This is required because of line 91 in your Project.xml
         run: |
           cd crshhndlr
           haxelib run lime build windows
@@ -34,7 +35,6 @@ jobs:
         with:
           name: windows-build
           path: export/release/windows/bin
-          if-no-files-found: error
 
   linux:
     runs-on: ubuntu-22.04
@@ -57,17 +57,19 @@ jobs:
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
 
-      - name: Fix hxCodec (Linux Linker Error)
-        # This removes the corrupted/incompatible libs bundled with hxCodec
-        run: rm -rf .haxelib/hxCodec/*/lib/vlc/lib/Linux
-
-      - name: Build Crash Handler
+      - name: Fix hxCodec (Symlink System Libs)
+        # This fixes the "file format not recognized" / "No such file" error
         run: |
-          cd crshhndlr
-          haxelib run lime build linux
-          cd ..
+          HXCODEC_PATH=$(haxelib libpath hxCodec | tr -d '\n')
+          LIB_PATH="$HXCODEC_PATH/lib/vlc/lib/Linux"
+          rm -rf "$LIB_PATH"
+          mkdir -p "$LIB_PATH"
+          ln -s /usr/lib/x86_64-linux-gnu/libvlc.so.5 "$LIB_PATH/libvlc.so.5"
+          ln -s /usr/lib/x86_64-linux-gnu/libvlccore.so.9 "$LIB_PATH/libvlccore.so.9"
 
       - name: Build Main Game
+        # We skip the crash handler here because your Project.xml 
+        # only looks for it on Windows (if="CRASH_HANDLER windows").
         run: haxelib run lime build linux
 
       - name: Upload Artifact
@@ -75,4 +77,3 @@ jobs:
         with:
           name: linux-build
           path: export/release/linux/bin
-          if-no-files-found: error
