@@ -1,76 +1,51 @@
 name: Main
 
 on:
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-Windows:
-runs-on: windows-latest
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-```
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.3.6
 
-  - name: Setup Haxe
-    uses: krdlab/setup-haxe@v1
-    with:
-      haxe-version: 4.3.6
+      - name: Install libs
+        run: |
+          haxelib install hmm --quiet
+          haxelib run hmm install --quiet
 
-  - name: Install Libraries
-    run: |
-      haxelib install hmm --quiet
-      haxelib run hmm install --quiet
+      - name: Build
+        run: haxelib run lime build windows
 
-  - name: Compile (Crash Handler)
-    run: |
-      cd crshhndlr
-      haxelib run lime build windows
+  linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Compile (Game)
-    run: haxelib run lime build windows
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.3.6
 
-  - name: Upload Artifact
-    uses: actions/upload-artifact@v4
-    with:
-      name: windowsBuild
-      path: export/release/windows/bin/*
-      if-no-files-found: error
-```
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libvlc-dev libvlccore-dev
 
-Linux:
-runs-on: ubuntu-22.04
+      - name: Install libs
+        run: |
+          haxelib install hmm --quiet
+          haxelib run hmm install --quiet
 
-```
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+      - name: Fix hxCodec
+        run: rm -rf ~/.haxelib/hxCodec/*/lib/vlc/lib/Linux
 
-  - name: Setup Haxe
-    uses: krdlab/setup-haxe@v1
-    with:
-      haxe-version: 4.3.6
-
-  - name: Install Dependencies
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y libvlc-dev libvlccore-dev
-
-  - name: Install Haxe Libraries
-    run: |
-      haxelib install hmm --quiet
-      haxelib run hmm install --quiet
-
-  - name: Fix hxCodec (Linux VLC issue)
-    run: rm -rf ~/.haxelib/hxCodec/*/lib/vlc/lib/Linux
-
-  - name: Compile
-    run: haxelib run lime build linux
-
-  - name: Upload Artifact
-    uses: actions/upload-artifact@v4
-    with:
-      name: linuxBuild
-      path: export/release/linux/bin/*
-      if-no-files-found: error
-```
+      - name: Build
+        run: haxelib run lime build linux
