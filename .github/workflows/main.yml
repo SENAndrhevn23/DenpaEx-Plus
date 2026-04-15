@@ -1,5 +1,4 @@
 name: Main
-
 on:
   workflow_dispatch:
 
@@ -20,7 +19,13 @@ jobs:
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
 
-      - name: Build
+      - name: Build Crash Handler (Windows)
+        run: |
+          cd crshhndlr
+          haxelib run lime build windows
+          cd ..
+
+      - name: Build Main Game
         run: haxelib run lime build windows
 
   linux:
@@ -47,5 +52,13 @@ jobs:
       - name: Fix hxCodec
         run: rm -rf ~/.haxelib/hxCodec/*/lib/vlc/lib/Linux
 
-      - name: Build
+      - name: Build Crash Handler (Linux)
+        # Note: If your engine only supports the crash handler on Windows, 
+        # you may need to skip this or fix your Project.xml (see below).
+        run: |
+          cd crshhndlr
+          haxelib run lime build linux
+          cd ..
+
+      - name: Build Main Game
         run: haxelib run lime build linux
